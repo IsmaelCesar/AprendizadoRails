@@ -3,7 +3,7 @@ Desafios da equipe Ruby Lovers para prática de aprendizados de ruby on rails
 
 - *Advertência 1:* Já que trata-se de um trabalho fullstack é necessário observar aspectos como layout e usabilidade do site
 - *Advertência 2:* Todas as tabelas devem ter timestamps
-- *Advertência 2:* Dê preferência ao i18n para parametrização dos capos e menus no site.
+- *Advertência 3:* Dê preferência ao i18n para parametrização dos capos e menus no site.
 
 ## Tarefa 1
   ### CryptoWallet++
