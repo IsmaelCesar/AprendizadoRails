@@ -5,6 +5,8 @@ Desafios da equipe Ruby Lovers para prática de aprendizados de ruby on rails
 - *Advertência 2:* Todas as tabelas devem ter timestamps
 - *Advertência 3:* Dê preferência ao i18n para parametrização dos capos e menus no site.
 
+Para gerenciamento de login pode-se utilizar a gem [Devise](https://rubygems.org/gems/devise) 
+
 ## Tarefa 1
   ### CryptoWallet++
   Refazer o CryptoWallet do curso de Ruby on Rails do Inicio ao fim de Jackson Pires. Com um incremento a mais. 
