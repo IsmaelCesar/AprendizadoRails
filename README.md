@@ -1,24 +1,14 @@
-# README
+# CryptoWallet++
+## Oque é? 
+Este repositório contém a implementação do incremento da aplicação apresentada no Rails do Inicio ao Fim de Jackson Pires.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Os incrementos feitos foram: 
+- Adição de usuários
+- Adição de multiplas carteiras para cada usuario
+- Adição de valor a ser investido em cada cryptomoeda
 
-Things you may want to cover:
+## Configurações
+O projeto foi contruido utilizando Ruby on Rails versão `5.2.4.3`, com a linguagem Ruby versão `2.4.4`
 
-* Ruby version
+O banco de dados utilizado para persistência foi o `postgresql` versão `11.9`
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
