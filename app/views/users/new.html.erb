@@ -3,11 +3,12 @@
 <%= link_to "Voltar" , root_path %>
 <%= form_with model: @user, id:'form-new-user' do |f|%>
   <div id="name-field">
-    <%= f.text_field :name , placeholder: "Username here" , id: "user-name-id" %>
+    <%= f.text_field :name , placeholder: "Username here" , id: "user-name-id", required: true %>
   </div>
    <div id="password-fields">
-      <%= f.password_field :password, placeholder: "Your Password" , id: "password-id" %> <br>
-     <%= f.password_field :password_confirmation , placeholder: "Confirm your password" , id: "password-confirmatio-id" %>
+      <%= f.password_field :password, placeholder: "Your Password" , id: "password-id", required: true %> <br>
+     <%= f.password_field :password_confirmation , placeholder: "Confirm your password" ,
+                          id: "password-confirmation-id", required: true %>
    </div>
   <div id="buttons">
     <%= f.submit "Salvar ", id:"btn-criar-usuario"%> <%= f.button "Cancelar", type: "reset" %>
@@ -15,15 +16,34 @@
 <% end %>
 <script>
     $(document).ready(()=>{
-        $('#btn-criar-usuario').click(()=>{
+        $('#btn-criar-usuario').click((event)=>{
             let psw = $('#password-id').val();
-            let psw_confirm = $('#password-confirmatio-id').val();
+            let psw_confirm = $('#password-confirmation-id').val();
             let value = true;
             if(psw !== psw_confirm) {
                 alert("The password confirmation is different!");
                 value = false;
             }
+            else {
+                makeAssyncRequest(event);
+            }
             return value;
-        });
+        })
+
+        function makeAssyncRequest(event){
+            event.preventDefault();
+            let data_to_submit = document.querySelectorAll('#form-new-user input')
+            $.ajax({
+                url: '<%= users_path %>',
+                method: 'post',
+                data: $(data_to_submit).serialize(),
+                success: () => {
+                },
+                error: err => {
+                    alertify.alert(err["responseJSON"]["message"]);
+                }
+            });
+        }
+
     })
 </script>

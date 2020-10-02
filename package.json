@@ -2,6 +2,8 @@
   "name": "maratona",
   "private": true,
   "dependencies": {
+    "alertifyjs": "^1.13.1",
+    "bootstrap": "^4.5.2",
     "jquery": "^3.5.1"
   }
 }

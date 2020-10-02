@@ -5,13 +5,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    user_params = get_user_params
-    puts "User Params"
-    puts user_params
-    @new_user = User.new(user_params)
+    @new_user = User.new(get_user_params)
     User.transaction do
       if @new_user.save
         redirect_to root_path
+      else
+        puts "Here Failure!"
+        respond_to do |format|
+          msg = { message: 'User already exists' }
+          format.json { render json: msg, status: 406 }
+        end
       end
     end
   end
