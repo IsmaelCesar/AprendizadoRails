@@ -1,9 +1,0 @@
-<h1>User#new</h1>
-<p>Find me in app/views/user/new.html.erb</p>
-
-<%= form_with @user do |f| %>
-  <%= f.text_field f.name , place_holder: "Username here" , id: "user-name-id" %>
-  <%= f.password f.password , place_holder: "Your Password" , id: "password-id" %>
-  <%= f.password f.password , place_holder: "Confirm your password" , id: "password-confirm-id" %>
-  <%= f.submit "Salvar " %> <%= f.button_tag "Cancelar", type: "reset" %>
-<% end %>

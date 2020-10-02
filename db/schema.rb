@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_01_161345) do
+ActiveRecord::Schema.define(version: 2020_10_02_120623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,16 +25,18 @@ ActiveRecord::Schema.define(version: 2020_10_01_161345) do
   end
 
   create_table "coins", force: :cascade do |t|
-    t.string "description"
+    t.text "description"
     t.string "acronym"
     t.bigint "mining_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "value"
+    t.string "url_image"
     t.index ["mining_type_id"], name: "index_coins_on_mining_type_id"
   end
 
   create_table "mining_types", force: :cascade do |t|
-    t.string "description"
+    t.text "description"
     t.string "acronym"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -42,24 +44,23 @@ ActiveRecord::Schema.define(version: 2020_10_01_161345) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "password"
-    t.decimal "money"
+    t.string "password_digest"
+    t.decimal "budget"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
     t.index ["name"], name: "index_users_on_name"
   end
 
   create_table "wallets", force: :cascade do |t|
-    t.string "nome"
+    t.string "name"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id"
-    t.index ["users_id"], name: "index_wallets_on_users_id"
+    t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
   add_foreign_key "coin_wallets", "coins"
   add_foreign_key "coin_wallets", "wallets"
   add_foreign_key "coins", "mining_types"
-  add_foreign_key "wallets", "users", column: "users_id"
+  add_foreign_key "wallets", "users"
 end

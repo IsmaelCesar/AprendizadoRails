@@ -1,0 +1,29 @@
+<h1>User#new</h1>
+<p>Find me in app/views/user/new.html.erb</p>
+<%= link_to "Voltar" , root_path %>
+<%= form_with model: @user, id:'form-new-user' do |f|%>
+  <div id="name-field">
+    <%= f.text_field :name , placeholder: "Username here" , id: "user-name-id" %>
+  </div>
+   <div id="password-fields">
+      <%= f.password_field :password, placeholder: "Your Password" , id: "password-id" %> <br>
+     <%= f.password_field :password_confirmation , placeholder: "Confirm your password" , id: "password-confirmatio-id" %>
+   </div>
+  <div id="buttons">
+    <%= f.submit "Salvar ", id:"btn-criar-usuario"%> <%= f.button "Cancelar", type: "reset" %>
+  </div>
+<% end %>
+<script>
+    $(document).ready(()=>{
+        $('#btn-criar-usuario').click(()=>{
+            let psw = $('#password-id').val();
+            let psw_confirm = $('#password-confirmatio-id').val();
+            let value = true;
+            if(psw !== psw_confirm) {
+                alert("The password confirmation is different!");
+                value = false;
+            }
+            return value;
+        });
+    })
+</script>

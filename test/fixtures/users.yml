@@ -2,10 +2,10 @@
 
 one:
   name: MyString
-  password: MyString
-  money: 9.99
+  password_digest: MyString
+  budget: 9.99
 
 two:
   name: MyString
-  password: MyString
-  money: 9.99
+  password_digest: MyString
+  budget: 9.99
