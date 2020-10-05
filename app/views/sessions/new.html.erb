@@ -1,5 +1,5 @@
-<% flash.now.each do |type, message|  %>
-  <%= message %>
+<% if flash.now[:notice].present? %>
+  <p><%= flash.now[:notice] = "" %></p>
 <% end %>
 <div id="login-form">
   <%= form_with url: sign_in_path do |f| %>

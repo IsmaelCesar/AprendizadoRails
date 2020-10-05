@@ -4,6 +4,8 @@
 <p>Here is how much money you have</p>
 <p>R$ <%=  @user.budget || "0,00"%></p>
 
+<%= button_tag "Create new Wallet ", class:'btn btn-success', id: 'btn-create-new-wallet' %>
+<div id="my-modal-container"> </div>
 <table>
   <thead>
     <tr>
@@ -24,3 +26,14 @@
     <% end %>
   </tbody>
 </table>
+<script>
+  $('#btn-create-new-wallet').click(()=>{
+      $.ajax({
+          method:'get',
+          url: '<%= wallets_new_path %>',
+          success: (data) =>{
+            console.log(data);
+          }
+      });
+  });
+</script>

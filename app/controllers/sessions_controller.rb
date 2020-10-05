@@ -12,8 +12,9 @@ class SessionsController < ApplicationController
       sign_in(@user)
       redirect_to users_path
     else
-      puts 'Failure'
-      render flash.now[:alert] = '<script> alertify.alert(\'Invalid username or password\') </script>'
+      respond_to do |format|
+        format.js { render 'sessions/warning', locals: { message: 'Invalid username or password' } }
+      end
     end
   end
 
