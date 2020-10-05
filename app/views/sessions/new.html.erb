@@ -1,7 +1,5 @@
-<% if flash.now[:alert].present?  %>
-  <script>
-    alertify.alert('<%= flash.now[:alert] %>')
-  </script>
+<% flash.now.each do |type, message|  %>
+  <%= message %>
 <% end %>
 <div id="login-form">
   <%= form_with url: sign_in_path do |f| %>
@@ -21,6 +19,3 @@
     <%= link_to 'Register', new_users_path, class: 'btn btn-secondary btn-block' %>
   </div>
 </div>
-<script>
-
-</script>
