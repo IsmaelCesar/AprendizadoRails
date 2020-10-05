@@ -1,0 +1,26 @@
+<% if flash.now[:alert].present?  %>
+  <script>
+    alertify.alert('<%= flash.now[:alert] %>')
+  </script>
+<% end %>
+<div id="login-form">
+  <%= form_with url: sign_in_path do |f| %>
+    <div id="username-container">
+      <%= f.text_field :name , placeholder: "Your username", required: true %>
+    </div>
+    <div id="password-container">
+      <%= f.password_field :password, placeholder: "Your password", required: true  %>
+    </div>
+
+    <div id="buttons-container">
+      <%= f.submit 'Login', id:'btn-login', class:'btn btn-primary' %>
+      <%= f.button 'Clear', class:'btn btn-secondary' ,  type:'reset'%>
+    </div>
+  <% end %>
+  <div id="btn-register-container">
+    <%= link_to 'Register', new_users_path, class: 'btn btn-secondary btn-block' %>
+  </div>
+</div>
+<script>
+
+</script>

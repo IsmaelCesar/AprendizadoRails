@@ -19,6 +19,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = current_user
+    @wallets = @user.wallets
+  end
+
   def edit
   end
 

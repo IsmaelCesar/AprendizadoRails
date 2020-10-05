@@ -1,0 +1,26 @@
+
+<h1> Welcome <%= @user.name %></h1>
+<%= link_to "Logout", sign_out_path, class:"btn btn-secondary", method: 'delete' %>
+<p>Here is how much money you have</p>
+<p>R$ <%=  @user.budget || "0,00"%></p>
+
+<table>
+  <thead>
+    <tr>
+      <th> Nome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if !@wallets.empty?  %>
+      <% @wallets.each do |wallet|%>
+        <tr>
+          <td><%= wallet.name %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td> <p> No wallets registered </p></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
