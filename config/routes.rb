@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'coin_wallets/show'
+  get 'coin_wallets/create'
+  resource :coins
   # Wallets
-  get 'wallets/new', to: 'wallets#new'
-  get 'wallets/create'
-  get 'wallets/show'
+  resources :wallets
 
   # Log in
   get 'sign_in', to: 'sessions#new'

@@ -1,13 +1,32 @@
-<div class='modal fade' id='new-wallet-modal' tabindex="-1" role='dialog'>
-  <div class='modal-dialog' role='document'>
-    <div class="modal-header">
-      <h3 class='modal-title'> Create new Wallet</h3>
-      <button class='close' data-dismiss='modal' aria-label='Close'>
-        &times;
-      </button>
-    </div>
-    <div class='modal-body'>
+<div class="modal fade" id="new-wallet-modal" tabindex="-1" role="dialog" aria-labelledby="new-wallet-modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"> Create new Wallet</h3>
+        <button class="close" data-dismiss="modal" aria-label="Close">
+          &times;
+        </button>
+      </div>
+      <%= form_with model: @new_wallet, url: wallets_path, id:'form-new-wallet' do |f|%>
+        <div class='modal-body'>
+                <div id="new-wallet-name">
+                  <%= f.text_field :name, placeholder: 'Type the new wallet Name' %>
 
+                </div>
+        </div>
+        <div class='modal-footer'>
+            <%= f.button  'Cancel', type:'reset', class:'btn btn-danger', id:'btn-cancel-new-wallet' %>
+            <%= f.submit 'Save' , class:'btn btn-success', id: 'btn-save-new-wallet' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
+<script>
+  $(document).ready(()=>{
+     $('#btn-cancel-new-wallet').attr('data-dismiss', 'modal');
+     $('#btn-save-new-wallet').click(()=>{
+         $('#new-wallet-modal').modal('hide');
+     })
+  });
+</script>

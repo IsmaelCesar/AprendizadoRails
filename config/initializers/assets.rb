@@ -15,5 +15,6 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w[ welcome.scss welcome.coffee
                                                   users.scss users.coffee
                                                   sessions.scss sessions.coffee
-                                                   wallets.scss wallets.coffee]
+                                                  wallets.scss wallets.coffee
+                                                  coins.scss coins.coffee]
 
