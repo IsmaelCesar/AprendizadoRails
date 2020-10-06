@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resource :coins
   # Wallets
   resources :wallets
+  get 'wallets_table', to: 'wallets#get_wallets_table'
+
 
   # Log in
   get 'sign_in', to: 'sessions#new'

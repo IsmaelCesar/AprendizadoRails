@@ -1,0 +1,61 @@
+<table class="table table-hover table-bordered">
+  <thead>
+  <tr>
+    <th colspan="3" style="text-align: center"> Nome</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if !@wallets.empty?  %>
+    <% @wallets.each do |wallet|%>
+      <tr>
+        <td>
+          <%= button_tag class: 'btn btn-primary' do%>
+            <i class="fa fa-arrow-circle-right"></i>
+          <% end %>
+        </td>
+
+        <td><%= wallet.name %></td>
+        <td>
+          <%= button_tag class: 'btn btn-danger', onclick:"remove(#{wallet.id})" do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td> <p> No wallets registered </p></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+    function remove(wallet_id){
+        if(<%= @wallets.empty? %>){
+            alertify.confirm( 'Wallet not empty',
+                'You are trying to delete a wallet that is not empty Do you still want to proceed with your deletion?',
+                ()=>{
+                    asyncDeleteWallet(wallet_id);
+                },
+                ()=>{}
+            );
+        }
+        else{
+            asyncDeleteWallet(wallet_id);
+        }
+    }
+
+    function asyncDeleteWallet(wallet_id){
+        let authenticity_token = document.querySelector('meta[name=csrf-token]').content;
+        $.ajax({
+            method: 'delete',
+            url: `<%= wallets_path %>/${wallet_id}?authenticity_token=${authenticity_token}`,
+            success: (data) =>{
+                alertify.success('Wallet successfuly deleted');
+            },
+            error: (err)=>{
+                alertify.error('There has been a problem with the wallets deletion');
+            }
+        });
+    }
+</script>

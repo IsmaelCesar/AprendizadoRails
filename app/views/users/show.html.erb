@@ -1,57 +1,42 @@
 
-<h1> Welcome <%= @user.name %></h1>
-<%= link_to "Logout", sign_out_path, class:"btn btn-secondary", method: 'delete' %>
-<p>Here is how much money you have</p>
-<p>R$ <%=  @user.budget || "0,00"%></p>
+<div class="container-fluid">
+  <h1> Welcome <%= @user.name %></h1>
+  <%= link_to "Logout", sign_out_path, class:"btn btn-secondary", method: 'delete' %>
+  <p>Here is how much money you have</p>
+  <p>R$ <%=  @user.budget || "0,00"%></p>
 
-<!-- <%= button_tag "Create new Wallet ", class:'btn btn-success', id: 'btn-create-new-wallet' %> -->
-<button class="btn btn-success" id="btn-create-new-wallet" >
-  Create new Wallet
-</button>
-<%= link_to "Show coins", coins_path , class: 'btn btn-primary', id: 'btn-show-coins' %>
-<div id="my-modal-container"> </div>
-<table class="table table-hover table-bordered">
-  <thead>
-    <tr>
-      <th colspan="3" style="text-align: center"> Nome</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if !@wallets.empty?  %>
-      <% @wallets.each do |wallet|%>
-        <tr>
-          <td>
-            <%= button_tag class: 'btn btn-primary' do%>
-              <i class="fa fa-arrow-circle-right"></i>
-            <% end %>
-          </td>
-
-          <td><%= wallet.name %></td>
-          <td>
-            <%= button_tag class: 'btn btn-danger' do%>
-              <i class="fa fa-trash"></i>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    <% else %>
-      <tr>
-        <td> <p> No wallets registered </p></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <!-- <%= button_tag "Create new Wallet ", class:'btn btn-success', id: 'btn-create-new-wallet' %> -->
+  <button class="btn btn-success" id="btn-create-new-wallet" >
+    Create new Wallet
+  </button>
+  <%= link_to "Show coins", coins_path , class: 'btn btn-primary', id: 'btn-show-coins' %>
+  <div id="my-modal-container"> </div>
+  <div id="wallets-table-container"> </div>
+</div>
 <script>
-  $(document).ready(()=> {
-      $('#btn-create-new-wallet').click(() => {
-          $.ajax({
-              method: 'get',
-              url: '<%= wallets_path %>',
-              success: (data) => {
-                  $('#my-modal-container').html(data);
-                  $('#new-wallet-modal').modal("show")
-              }
-          });
-      });
-  });
+    $(document).ready(()=> {
+        $('#btn-create-new-wallet').click(() => {
+            $.ajax({
+                method: 'get',
+                url: '<%= new_wallet_path %>',
+                success: (data) => {
+                    $('#my-modal-container').html(data);
+                    $('#new-wallet-modal').modal("show")
+                }
+            });
+        });
+
+        $.ajax({
+           method: 'get',
+           url: '<%= wallets_table_path %>',
+            success: data =>{
+              $('#wallets-table-container').html(data);
+            },
+            error: err =>{
+               alertify.error('Erro when loading the wallets table');
+               console.warn("There has been an error when trying to load the wallets table");
+               console.error(err);
+            }
+        });
+    });
 </script>
