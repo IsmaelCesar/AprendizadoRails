@@ -3,8 +3,9 @@
   <h1> Welcome <%= @user.name %></h1>
   <%= link_to "Logout", sign_out_path, class:"btn btn-secondary", method: 'delete' %>
   <p>Here is how much money you have</p>
-  <p>R$ <%=  @user.budget || "0,00"%></p>
-
+  <div id="user-budget-container">
+    <h4 id="user-budget-content">R$ <span id="user-budget-value"><%=  @user.budget || "0,00"%></span></h4>
+  </div>
   <!-- <%= button_tag "Create new Wallet ", class:'btn btn-success', id: 'btn-create-new-wallet' %> -->
   <button class="btn btn-success" id="btn-create-new-wallet" >
     Create new Wallet
@@ -26,17 +27,9 @@
             });
         });
 
-        $.ajax({
-           method: 'get',
-           url: '<%= wallets_table_path %>',
-            success: data =>{
-              $('#wallets-table-container').html(data);
-            },
-            error: err =>{
-               alertify.error('Erro when loading the wallets table');
-               console.warn("There has been an error when trying to load the wallets table");
-               console.error(err);
-            }
-        });
+        asyncUpdateWalletsTable();
+
     });
+
+
 </script>

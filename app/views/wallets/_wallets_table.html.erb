@@ -16,8 +16,10 @@
 
         <td><%= wallet.name %></td>
         <td>
-          <%= button_tag class: 'btn btn-danger', onclick:"remove(#{wallet.id})" do %>
-            <i class="fa fa-trash"></i>
+          <%= form_with model:wallet, id:'form-delete-wallet', method: 'delete' do %>
+            <%= button_tag class: 'btn btn-danger', onclick:"remove(#{wallet.id})" do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
           <% end %>
         </td>
       </tr>
@@ -46,15 +48,18 @@
     }
 
     function asyncDeleteWallet(wallet_id){
-        let authenticity_token = document.querySelector('meta[name=csrf-token]').content;
+
         $.ajax({
             method: 'delete',
-            url: `<%= wallets_path %>/${wallet_id}?authenticity_token=${authenticity_token}`,
+            url: `<%= wallets_path %>/${wallet_id}`,
+            data: $('#form-delete-wallet').serialize(),
             success: (data) =>{
                 alertify.success('Wallet successfuly deleted');
+                asyncUpdateWalletsTable();
             },
             error: (err)=>{
                 alertify.error('There has been a problem with the wallets deletion');
+                console.error(err);
             }
         });
     }

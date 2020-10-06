@@ -22,7 +22,11 @@ class WalletsController < ApplicationController
   def destroy
     @wallet = Wallet.find(params[:id])
     Wallet.transaction do
-      @wallet.destroy
+      if @wallet.destroy
+        respond_to do |format|
+          format.json { render json: {message: 'success'} , status: 200}
+        end
+      end
     end
   end
 
@@ -36,7 +40,7 @@ class WalletsController < ApplicationController
   private
 
   def new_wallet_params
-    params.permit(:id)
+    params.require(:wallet).permit(:name)
   end
 
   def set_current_user
