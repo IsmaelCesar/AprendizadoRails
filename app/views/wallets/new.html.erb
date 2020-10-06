@@ -23,11 +23,12 @@
   </div>
 </div>
 <script>
-  $(document).ready(()=>{
-     $('#btn-cancel-new-wallet').attr('data-dismiss', 'modal');
-     $('#btn-save-new-wallet').click(()=>{
-         asyncUpdateWalletsTable();
-         $('#new-wallet-modal').modal('hide');
-     });
-  });
+
+   $('#btn-cancel-new-wallet').attr('data-dismiss', 'modal');
+   $('#btn-save-new-wallet').click(()=>{
+       $('#new-wallet-modal').modal('hide');
+   }).focusout(()=>{
+       asyncUpdateWalletsTable();
+   });
+
 </script>

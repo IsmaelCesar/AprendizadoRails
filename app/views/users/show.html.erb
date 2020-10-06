@@ -15,21 +15,35 @@
   <div id="wallets-table-container"> </div>
 </div>
 <script>
-    $(document).ready(()=> {
-        $('#btn-create-new-wallet').click(() => {
-            $.ajax({
-                method: 'get',
-                url: '<%= new_wallet_path %>',
-                success: (data) => {
-                    $('#my-modal-container').html(data);
-                    $('#new-wallet-modal').modal("show")
-                }
-            });
+
+    $('#btn-create-new-wallet').click(() => {
+        $.ajax({
+            method: 'get',
+            url: '<%= new_wallet_path %>',
+            success: (data) => {
+                $('#my-modal-container').html(data);
+                $('#new-wallet-modal').modal("show")
+            }
         });
-
-        asyncUpdateWalletsTable();
-
     });
 
+    asyncUpdateWalletsTable();
+
+    function asyncUpdateWalletsTable(){
+        console.log('Here Procedure');
+        $.ajax({
+            method: 'get',
+            url: '/wallets_table',
+            success: data =>{
+                $('#wallets-table-container').html(data);
+                console.log('Here AJAX');
+            },
+            error: err =>{
+                alertify.error('Erro when loading the wallets table');
+                console.warn("There has been an error when trying to load the wallets table");
+                console.error(err);
+            }
+        });
+    }
 
 </script>
