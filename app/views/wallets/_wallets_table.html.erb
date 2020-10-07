@@ -33,7 +33,7 @@
 </table>
 <script>
     function remove(wallet_id){
-        if(<%= @wallets.empty? %>){
+        if(<%= !@wallets.empty? %>){
             alertify.confirm( 'Wallet not empty',
                 'You are trying to delete a wallet that is not empty Do you still want to proceed with your deletion?',
                 ()=>{

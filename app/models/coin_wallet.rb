@@ -1,4 +1,4 @@
 class CoinWallet < ApplicationRecord
-  belongs_to :wallet
-  belongs_to :coin
+  belongs_to :wallet, dependent: :delete
+  belongs_to :coin, dependent: :delete
 end

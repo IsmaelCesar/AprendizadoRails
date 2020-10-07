@@ -39,8 +39,13 @@
               $('#modal-new-coin-wallet').modal('show');
           },
           error: (err) => {
-              console.error(err);
-              alertify.error('There has been an error getting the new coin wallet form');
+              if (err.status === 406){
+                  alertify.alert(err.responseJSON.message);
+              }
+              else {
+                  console.error(err);
+                  alertify.error('There has been an error getting the new coin wallet form');
+              }
           }
       });
   }

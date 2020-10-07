@@ -4,10 +4,17 @@ class CoinWalletsController < ApplicationController
   before_action :set_coin, only: [:new]
 
   def new
-    @new_coin_wallet = CoinWallet.new
-    @wallets = current_user.wallets
-    respond_to do |format|
-      format.html { render 'coin_wallets/new', layout: false and return }
+    @current_user = current_user
+    if !@current_user.budget.nil? && @current_user.budget > @coin.price
+      @new_coin_wallet = CoinWallet.new
+      @wallets = current_user.wallets
+      respond_to do |format|
+        format.html { render 'coin_wallets/new', layout: false and return }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { message: 'No enough money in budget' }, status: 406 }
+      end
     end
   end
 
