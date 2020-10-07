@@ -18,3 +18,17 @@
 //= require alertifyjs/build/alertify.min
 //= require_self
 
+function asyncUpdateWalletsTable(){
+    $.ajax({
+        method: 'get',
+        url: '/wallets_table',
+        success: data =>{
+            $('#wallets-table-container').html(data);
+        },
+        error: err =>{
+            alertify.error('Erro when loading the wallets table');
+            console.warn("There has been an error when trying to load the wallets table");
+            console.error(err);
+        }
+    });
+}
