@@ -8,13 +8,6 @@ class CoinWalletsController < ApplicationController
     @wallets = current_user.wallets
     respond_to do |format|
       format.html { render 'coin_wallets/new', layout: false and return }
-=begin
-      format.html { render partial: 'coin_wallets/partials/create_new_coin_wallets',
-                           layout: false,
-                           locals: {wallets: @wallets,
-                                    new_coin_wallet: @new_coin_wallet,
-                                    coin: @coin} and return}
-=end
     end
   end
 
