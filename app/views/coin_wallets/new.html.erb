@@ -1,0 +1,35 @@
+
+<div class="modal fade" id="modal-new-coin-wallet" tabindex="-1" role="dialog" aria-labelledby="new-coin-wallet">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" role="document">
+        <div class="modal-title">
+          Add Coin to Wallet
+          <button data-dismiss="modal" class="close" aria-label="Close">
+            &times;
+          </button>
+        </div>
+      </div>
+      <%= form_with model: @new_coin_wallet, id:'form-create-coin-wallet', class:'form' do |f| %>
+        <!-- <input type="hidden" name="coin_id" value="<%= @coin.id %>"> -->
+        <%= f.hidden_field :coin_id, value: @coin.id %>
+        <div class="modal-body">
+          <div class="form-group">
+            <h4>Select the wallet you wish to add the coin</h4>
+            <%= f.select :wallet_id, @wallets.collect { |wallet| [wallet.name, wallet.id] } %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.button 'Cancel', type:'reset', class:'btn btn-danger', id:'btn-cancel-new-coin-wallet' %>
+          <%= f.submit 'Save',   class:'btn btn-success', id: 'btn-save-new-coin-wallet'%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+    $('#btn-cancel-new-coin-wallet').attr('data-dismiss','modal');
+    $('#btn-save-new-coin-wallet').click(()=>{
+        $('#modal-new-coin-wallet').modal('hide');
+    });
+</script>
