@@ -27,6 +27,9 @@
    $('#btn-cancel-new-wallet').attr('data-dismiss', 'modal');
    $('#btn-save-new-wallet').click(()=>{
        $('#new-wallet-modal').modal('hide');
+   });
+
+   $('#new-wallet-modal').on('hidden.bs.modal',()=>{
        asyncUpdateWalletsTable();
    });
 
