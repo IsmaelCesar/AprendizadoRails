@@ -4,7 +4,7 @@
   <%= link_to "Logout", sign_out_path, class:"btn btn-secondary", method: 'delete' %>
   <p>Here is how much money you have</p>
   <div id="user-budget-container">
-    <h4 id="user-budget-content">R$ <span id="user-budget-value"><%=  @user.budget || "0,00"%></span></h4>
+    <%= render 'users/partials/user_budget'%>
   </div>
   <!-- <%= button_tag "Create new Wallet ", class:'btn btn-success', id: 'btn-create-new-wallet' %> -->
   <button class="btn btn-success" id="btn-create-new-wallet" >
