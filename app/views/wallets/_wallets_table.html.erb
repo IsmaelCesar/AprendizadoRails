@@ -16,7 +16,7 @@
 
         <td><%= wallet.name %></td>
         <td>
-          <%= form_with model:wallet, id:'form-delete-wallet', method: 'delete' do %>
+          <%= form_with model:wallet, id:"form-delete-wallet-#{wallet.id}", method: 'delete' do %>
             <%= button_tag class: 'btn btn-danger', onclick:"remove(#{wallet.id})" do %>
               <i class="fa fa-trash"></i>
             <% end %>
@@ -52,7 +52,7 @@
         $.ajax({
             method: 'delete',
             url: `<%= wallets_path %>/${wallet_id}`,
-            data: $('#form-delete-wallet').serialize(),
+            data: $(`#form-delete-wallet-${wallet_id}`).serialize(),
             success: (data) =>{
                 alertify.success('Wallet successfuly deleted');
                 asyncUpdateWalletsTable();

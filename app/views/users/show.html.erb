@@ -30,13 +30,11 @@
     asyncUpdateWalletsTable();
 
     function asyncUpdateWalletsTable(){
-        console.log('Here Procedure');
         $.ajax({
             method: 'get',
             url: '/wallets_table',
             success: data =>{
                 $('#wallets-table-container').html(data);
-                console.log('Here AJAX');
             },
             error: err =>{
                 alertify.error('Erro when loading the wallets table');
