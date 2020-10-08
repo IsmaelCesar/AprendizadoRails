@@ -14,19 +14,3 @@
   <div id="my-modal-container"> </div>
   <div id="wallets-table-container"> </div>
 </div>
-<script>
-
-    $('#btn-create-new-wallet').click(() => {
-        $.ajax({
-            method: 'get',
-            url: '<%= new_wallet_path %>',
-            success: (data) => {
-                $('#my-modal-container').html(data);
-                $('#new-wallet-modal').modal("show")
-            }
-        });
-    });
-
-    asyncUpdateWalletsTable();
-
-</script>
