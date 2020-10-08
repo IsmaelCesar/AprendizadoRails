@@ -31,39 +31,5 @@
   <% end %>
   </tbody>
 </table>
+<!-- lib/assets/javascripts/wallets_table -->
 <%= javascript_include_tag 'wallets_table', media: 'all' %>
-<script>
-  /*
-
-    function remove(wallet_id){
-        if(<%= @wallets.empty? %>){
-            alertify.confirm( 'Wallet not empty',
-                'You are trying to delete a wallet that is not empty Do you still want to proceed with your deletion?',
-                ()=>{
-                    asyncDeleteWallet(wallet_id);
-                },
-                ()=>{}
-            );
-        }
-        else{
-            asyncDeleteWallet(wallet_id);
-        }
-    }
-
-    function asyncDeleteWallet(wallet_id){
-
-        $.ajax({
-            method: 'delete',
-            url: `<%= wallets_path %>/${wallet_id}`,
-            data: $(`#form-delete-wallet-${wallet_id}`).serialize(),
-            success: (data) =>{
-                alertify.success('Wallet successfuly deleted');
-                asyncUpdateWalletsTable();
-            },
-            error: (err)=>{
-                alertify.error('There has been a problem with the wallets deletion');
-                console.error(err);
-            }
-        });
-    }*/
-</script>
