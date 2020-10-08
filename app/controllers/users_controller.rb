@@ -33,6 +33,27 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  def get_partial_user_budget
+    @user = current_user
+    respond_to do |format|
+      format.html { render partial: 'users/partials/user_budget', layout: false and return}
+    end
+  end
+
+  def get_user_budget_form
+    respond_to do |format|
+      format.html { render partial: 'users/partials/user_budget_form', layout: false and return }
+    end
+  end
+
+  def update_user_budget
+    @current_user = current_user
+    new_budget = params[:budget].to_f
+    User.transaction do
+      @current_user.update(budget: new_budget)
+    end
+  end
+
   private
 
   def get_user_params

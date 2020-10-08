@@ -1,0 +1,25 @@
+<div class="modal fade" id="modal-budget-form" role="dialog" tabindex="-1" aria-labelledby="modal-budget-form">
+  <div class="modal-dialog">
+    <div class="modal-content" role="document">
+      <div class="modal-header">
+        <div class="modal-title">
+          Updtate your budget
+        </div>
+        <button class="close" data-dismiss="modal">
+            &times;
+        </button>
+      </div>
+      <%= form_with url: user_budget_path, id: 'form-update-user-budget', method:'put' do |f| %>
+        <div class="modal-body">
+            <%= f.number_field :budget, id:'user-budget-number', placeholder:'10000.00',
+                               min:0 , step:'0.01' %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button 'Cancel' , type: 'reset', class:'btn btn-danger', 'data-dismiss':'modal' %>
+          <%= f.submit 'Save', class: 'btn btn-success', id: 'btn-update-budget' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag 'user_budget_form' %>

@@ -19,5 +19,6 @@ Rails.application.config.assets.precompile += %w[ welcome.scss welcome.coffee
                                                   sessions.scss sessions.coffee
                                                   wallets.scss wallets.coffee
                                                   coins.scss coins.coffee
-                                                  wallets_table.coffee]
+                                                  wallets_table.coffee
+                                                  user_budget_form.coffee]
 
