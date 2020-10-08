@@ -15,9 +15,9 @@
         </td>
 
         <td><%= wallet.name %></td>
-        <td>
+        <td class="table-cell-btn-delete">
           <%= form_with model:wallet, id:"form-delete-wallet-#{wallet.id}", method: 'delete' do %>
-            <%= button_tag class: 'btn btn-danger', onclick:"remove(#{wallet.id})" do %>
+            <%= button_tag class: 'btn btn-danger', value:wallet.id do %>
               <i class="fa fa-trash"></i>
             <% end %>
           <% end %>
@@ -31,7 +31,10 @@
   <% end %>
   </tbody>
 </table>
+<%= javascript_include_tag 'wallets_table', media: 'all' %>
 <script>
+  /*
+
     function remove(wallet_id){
         if(<%= @wallets.empty? %>){
             alertify.confirm( 'Wallet not empty',
@@ -62,5 +65,5 @@
                 console.error(err);
             }
         });
-    }
+    }*/
 </script>
