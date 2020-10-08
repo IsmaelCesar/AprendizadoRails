@@ -49,8 +49,9 @@ class UsersController < ApplicationController
   def update_user_budget
     @current_user = current_user
     new_budget = params[:budget].to_f
+    psw = params[:password]
     User.transaction do
-      @current_user.update(budget: new_budget)
+      @current_user.update(budget: new_budget, password: psw)
     end
   end
 

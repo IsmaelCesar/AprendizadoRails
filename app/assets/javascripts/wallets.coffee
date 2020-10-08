@@ -2,11 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+$(document).ready ->
 # VIEW wallets/new
-$('#btn-cancel-new-wallet').attr('data-dismiss', 'modal')
-$('#btn-save-new-wallet').click ->
-  $('#new-wallet-modal').modal('hide')
+  $('#btn-cancel-new-wallet').attr('data-dismiss', 'modal')
+  $('#btn-save-new-wallet').click ->
+    $('#new-wallet-modal').modal('hide')
 
-$('#new-wallet-modal').on('hidden.bs.modal', ->
-  asyncUpdateWalletsTable()
-)
+  $('#new-wallet-modal').on('hidden.bs.modal', ->
+    asyncUpdateWalletsTable()
+  )

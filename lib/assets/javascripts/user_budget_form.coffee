@@ -1,8 +1,7 @@
 # Partial users/partials/_user_budget_form
-
-$('#btn-update-budget').click ->
-  console.log 'Here BUTTON SAVE!'
-  $('#modal-budget-form').modal('hide')
+$(document).ready ->
+  $('#btn-update-budget').click ->
+    $('#modal-budget-form').modal('hide')
 
   $('#modal-budget-form').on('hidden.bs.modal', ->
     $.ajax
@@ -13,4 +12,5 @@ $('#btn-update-budget').click ->
       error: (err) ->
         alertify.error 'There has been an error when loading the budget partial'
         console.error err
+
   )
